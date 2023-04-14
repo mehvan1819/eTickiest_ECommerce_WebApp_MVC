@@ -1,5 +1,6 @@
 ﻿using eTickiest.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickiest.Controllers
 {
@@ -10,9 +11,9 @@ namespace eTickiest.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var producerlist = _context.Producers.ToList();
+            var producerlist = await _context.Producers.ToListAsync();
             return View(producerlist);
         }
     }
